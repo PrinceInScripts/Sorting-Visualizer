@@ -8,7 +8,7 @@ const arraySlice=createSlice({
     initialState,
     reducers:{
         setArray(state,action){
-            return payload.action;
+            return action.payload;
         }
     }
 })
