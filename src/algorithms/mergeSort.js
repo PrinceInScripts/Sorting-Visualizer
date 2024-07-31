@@ -86,3 +86,5 @@ function handleDispatch(toDispatch, dispatch, array, speed) {
       handleDispatch(toDispatch, dispatch, array, speed);
     }, speed);
   }
+
+  export default mergeSort
