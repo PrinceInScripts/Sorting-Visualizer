@@ -10,6 +10,7 @@ import quickReducer from "./reducers/quick";
 import mergeReducer from "./reducers/merge";
 import selectionReducer from "./reducers/selection";
 import toolbarReducer from "./reducers/Toolbar";
+import pivotReducer from "./reducers/pivot";
 
 const store = configureStore({
   reducer: {
@@ -24,6 +25,7 @@ const store = configureStore({
     merge: mergeReducer,
     selection: selectionReducer,
     toolbar: toolbarReducer,
+    pivot:pivotReducer
   },
 });
 
