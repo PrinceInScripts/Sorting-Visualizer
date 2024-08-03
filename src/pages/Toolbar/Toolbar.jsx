@@ -81,7 +81,7 @@ const Toolbar = () => {
       >
         Generate New Array
       </div>
-      <div id="arraySize" className="font-bol font-serif" style={{ color: color }}>
+      <div id="arraySize" className="font-bold font-serif" style={{ color: color }}>
         Change Array Size {`(${arraySize})`}
       </div>
       <input
@@ -94,8 +94,8 @@ const Toolbar = () => {
         onChange={handleArraySizeChange}
         value={arraySize}
       />
-      <div id="sortingSpeed" className="font-bol  font-serif" style={{ color: color }}>
-        Change Sorting Speed {`(${speed})`}
+      <div id="sortingSpeed" className="font-bold font-serif" style={{ color: color }}>
+        Change Sorting Speed
       </div>
       <input
         id="changeSortingSpeed"
@@ -110,7 +110,7 @@ const Toolbar = () => {
       <select
         id="algorithmSelect"
         style={{ background: color, cursor: cursor }}
-        className="font-serif font-bold text-gra-900"
+        className="font-serif font-bold text-gray-900"
         disabled={isRunning}
         value={algorithm}
         onChange={(e) => updateAlgorithm(e.target.value)}
@@ -118,12 +118,12 @@ const Toolbar = () => {
         <option value="" className="font-serif font-bold" disabled>
           Select Sorting Algorithm
         </option>
-        <option value="mergeSort" className="font-serif font-bold text-gra-900">Merge Sort</option>
-        <option value="quickSort" className="font-serif font-bold text-gra-900">Quick Sort</option>
-        <option value="heapSort" className="font-serif font-bold text-gra-900">Heap Sort</option>
-        <option value="bubbleSort" className="font-serif font-bold text-gra-900">Bubble Sort</option>
-        <option value="selectionSort" className="font-serif font-bold text-gra-900">Selection Sort</option>
-        <option value="insertionSort" className="font-serif font-bold text-gra-900">Insertion Sort</option>
+        <option value="mergeSort" className="font-serif font-bold text-gray-900">Merge Sort</option>
+        <option value="quickSort" className="font-serif font-bold text-gray-900">Quick Sort</option>
+        <option value="heapSort" className="font-serif font-bold text-gray-900">Heap Sort</option>
+        <option value="bubbleSort" className="font-serif font-bold text-gray-900">Bubble Sort</option>
+        <option value="selectionSort" className="font-serif font-bold text-gray-900">Selection Sort</option>
+        <option value="insertionSort" className="font-serif font-bold text-gray-900">Insertion Sort</option>
       </select>
       <div className="flex">
         {algorithm && (
@@ -134,7 +134,7 @@ const Toolbar = () => {
           >
             <button
               type="button"
-              className="focus:outline-none font-bold font-serif text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300  rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+              className="focus:outline-none font-bold font-serif text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
               disabled={isRunning}
             >
               Sort!
