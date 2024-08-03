@@ -3,8 +3,12 @@
 const AlgorithmsDetails={
     mergeSorting:{
         name:'mergeSort',
-        timeComplexity:"O(n logn)",
-        spaceComplexity:"O(n)",
+        timeComplexity:{
+        bestCase:`➡Best Case : O(n logn)`,
+        averageCase:`➡Average Case : O(n logn)`,
+        worstCase:`➡Worst Case : O(n logn)`
+        },
+        spaceComplexity:`➡O(n)`,
         code:{
             cpp:`
              class Solution{
@@ -74,8 +78,12 @@ const AlgorithmsDetails={
     },
     bubbleSorting:{
         name:'bubbleSort',
-        timeComplexity:"O(n^2)",
-        spaceComplexity:"O(1)",
+        timeComplexity:{
+            bestCase:`➡Best Case : O(n)`,
+            averageCase:`➡Average Case : O(n^2)`,
+            worstCase:`➡Worst Case : O(n^2)`
+            },
+        spaceComplexity:`➡O(1)`,
         code:{
             cpp:`
              class Solution{
@@ -110,8 +118,12 @@ const AlgorithmsDetails={
     },
     insertionSorting:{
         name:'insertionSort',
-        timeComplexity:"O(n^2)",
-        spaceComplexity:"O(1)",
+        timeComplexity:{
+            bestCase:`➡Best Case : O(n)`,
+            averageCase:`➡Average Case : O(n^2)`,
+            worstCase:`➡Worst Case : O(n^2)`
+            },
+        spaceComplexity:`➡O(1)`,
         code:{
             cpp:`
              class Solution{
@@ -146,8 +158,12 @@ const AlgorithmsDetails={
     },
     selectionSorting:{
         name:'selectionSort',
-        timeComplexity: "O(n^2)",
-        spaceComplexity: "O(1)",
+        timeComplexity:{
+            bestCase:`➡Best Case : O(n^2)`,
+            averageCase:`➡Average Case : O(n^2)`,
+            worstCase:`➡Worst Case : O(n^2)`
+            },
+        spaceComplexity: `➡O(1)`,
         code:{
             cpp:`
              class Solution{
@@ -191,8 +207,12 @@ const AlgorithmsDetails={
     },
     quickSorting:{
         name:'quickSort',
-        timeComplexity: "O(n^2)",
-        spaceComplexity: "O(1)",
+        timeComplexity:{
+            bestCase:`➡Best Case : O(n logn)`,
+            averageCase:`➡Average Case : O(n logn)`,
+            worstCase:`➡Worst Case : O(n^2)`
+            },
+        spaceComplexity: `➡O(logn)`,
         code:{
             cpp:`
              class Solution{
@@ -274,8 +294,12 @@ const AlgorithmsDetails={
     },
     heapSorting:{
         name:'heapSort',
-        timeComplexity:"O(n^2)",
-        spaceComplexity:"O(1)",
+        timeComplexity:{
+            bestCase:`➡Best Case : O(n logn)`,
+            averageCase:`➡Average Case : O(n logn)`,
+            worstCase:`➡Worst Case : O(n logn)`
+            },
+        spaceComplexity:`➡O(1)`,
         code:{
             cpp:`
             class Solution {

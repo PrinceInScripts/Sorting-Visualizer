@@ -30,8 +30,17 @@ function AlgorthitmInfo({algorithm}) {
     <div className="p-4 bg-gray-200 rounded-lg">
       <h2 className="text-4xl  text-center font-serif  font-bold mb-2">{sortingName(details.name)}</h2>
       <div className='flex justify-center gap-10'>
-      <p className='text-lg font-semibold font-serif'>Time Complexity:{details.timeComplexity}</p>
-      <p className='text-lg font-semibold font-serif'>Space Complexity: {details.spaceComplexity}</p>
+      <p className='text-lg font-semibold font-serif'>Time Complexity
+      <ol>
+            <li>{details.timeComplexity.bestCase}</li>
+            <li>{details.timeComplexity.averageCase}</li>
+            <li>{details.timeComplexity.worstCase}</li>
+          </ol>
+      </p>
+      <p className='text-lg font-semibold font-serif'>Space Complexity
+        <ol>
+          <li>{details.spaceComplexity}</li>
+          </ol></p>
       </div>
      
       <div className="mt-4">
