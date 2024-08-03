@@ -16,7 +16,7 @@ const Toolbar = () => {
   const dispatch = useDispatch();
   const array = useSelector((state) => state.array);
   const algorithm = useSelector((state) => state.toolbar.algorithm);
-  const isRunning = useSelector((state) => state.isRunning);
+  const isRunning = useSelector((state) => state.running);
 
   const [arraySize, setArraySize] = useState(50);
   const [sortingSpeed, setSortingSpeed] = useState(50);
@@ -35,7 +35,7 @@ const Toolbar = () => {
   };
 
   const handleArraySizeChange = (evt) => {
-    const newSize = Math.floor((parseInt(evt.target.value) + 3) * 1.65);
+    const newSize = Math.min(Math.floor((parseInt(evt.target.value) + 3) * 1.65), 100);
     setArraySize(newSize);
     generateArray(newSize);
   };
@@ -45,7 +45,6 @@ const Toolbar = () => {
   };
 
   const updateAlgorithm = (algorithm) => {
-    console.log(algorithm)
     dispatch(setAlgorithm(algorithm));
   };
 
@@ -58,12 +57,12 @@ const Toolbar = () => {
       selectionSort,
       insertionSort,
     };
-    
+
     const doSort = sortAlgorithms[algorithm];
     if (doSort) {
       dispatch(setCurrentSorted([]));
       dispatch(setRunning(true));
-      doSort(array, dispatch, speed);
+      doSort(array, dispatch, speed).then(() => dispatch(setRunning(false)));
     }
   };
 
@@ -71,22 +70,19 @@ const Toolbar = () => {
   const color = isRunning ? "rgba(214, 29, 29, 0.8)" : "white";
   const cursor = isRunning ? "auto" : "pointer";
 
-  useEffect(() => {
-    console.log("algorithm", algorithm);
-  }, [algorithm]);
-
   return (
-    <div id="toolbar">
+    <div id="toolbar" className="flex flex-col gap-5">
       <div
         id={!isRunning ? "generateArray" : "generateArrayX"}
         style={{ color: color, cursor: cursor }}
         onClick={!isRunning ? () => generateArray(array.length) : null}
+        type="button"
+        className="text-white bg-gradient-to-r font-bold font-serif  from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 text-xl rounded-lg px-5 py-2.5 text-center me-2 mb-2"
       >
         Generate New Array
       </div>
-      <div className="separator"></div>
-      <div id="arraySize" style={{ color: color }}>
-        Change Array Size
+      <div id="arraySize" className="font-bol font-serif" style={{ color: color }}>
+        Change Array Size {`(${arraySize})`}
       </div>
       <input
         id="changeArraySize"
@@ -94,13 +90,12 @@ const Toolbar = () => {
         min="0"
         max="100"
         style={{ background: color, cursor: cursor }}
-        disabled={isRunning ? "disabled" : null}
+        disabled={isRunning}
         onChange={handleArraySizeChange}
         value={arraySize}
       />
-      <div className="separator"></div>
-      <div id="sortingSpeed" style={{ color: color }}>
-        Change Sorting Speed
+      <div id="sortingSpeed" className="font-bol  font-serif" style={{ color: color }}>
+        Change Sorting Speed {`(${speed})`}
       </div>
       <input
         id="changeSortingSpeed"
@@ -108,57 +103,45 @@ const Toolbar = () => {
         min="0"
         max="100"
         style={{ background: color, cursor: cursor }}
-        disabled={isRunning ? "disabled" : null}
+        disabled={isRunning}
         onChange={handleSortingSpeedChange}
         value={sortingSpeed}
       />
-      <div className="separator"></div>
-      <div
-        className={algorithm === "mergeSort" ? "currentAlgorithmButton" : "algorithmButton"}
-        onClick={() => updateAlgorithm("mergeSort")}
+      <select
+        id="algorithmSelect"
+        style={{ background: color, cursor: cursor }}
+        className="font-serif font-bold text-gra-900"
+        disabled={isRunning}
+        value={algorithm}
+        onChange={(e) => updateAlgorithm(e.target.value)}
       >
-        Merge Sort
+        <option value="" className="font-serif font-bold" disabled>
+          Select Sorting Algorithm
+        </option>
+        <option value="mergeSort" className="font-serif font-bold text-gra-900">Merge Sort</option>
+        <option value="quickSort" className="font-serif font-bold text-gra-900">Quick Sort</option>
+        <option value="heapSort" className="font-serif font-bold text-gra-900">Heap Sort</option>
+        <option value="bubbleSort" className="font-serif font-bold text-gra-900">Bubble Sort</option>
+        <option value="selectionSort" className="font-serif font-bold text-gra-900">Selection Sort</option>
+        <option value="insertionSort" className="font-serif font-bold text-gra-900">Insertion Sort</option>
+      </select>
+      <div className="flex">
+        {algorithm && (
+          <div
+            id="sort"
+            style={{ color: color, cursor: cursor }}
+            onClick={!isRunning ? () => sort(algorithm, array, speed) : null}
+          >
+            <button
+              type="button"
+              className="focus:outline-none font-bold font-serif text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300  rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+              disabled={isRunning}
+            >
+              Sort!
+            </button>
+          </div>
+        )}
       </div>
-      <div
-        className={algorithm === "quickSort" ? "currentAlgorithmButton" : "algorithmButton"}
-        onClick={() => updateAlgorithm("quickSort")}
-      >
-        Quick Sort
-      </div>
-      <div
-        className={algorithm === "heapSort" ? "currentAlgorithmButton" : "algorithmButton"}
-        onClick={() => updateAlgorithm("heapSort")}
-      >
-        Heap Sort
-      </div>
-      <div
-        className={algorithm === "bubbleSort" ? "currentAlgorithmButton" : "algorithmButton"}
-        onClick={() => updateAlgorithm("bubbleSort")}
-      >
-        Bubble Sort
-      </div>
-      <div
-        className={algorithm === "selectionSort" ? "currentAlgorithmButton" : "algorithmButton"}
-        onClick={() => updateAlgorithm("selectionSort")}
-      >
-        Selection Sort
-      </div>
-      <div
-        className={algorithm === "insertionSort" ? "currentAlgorithmButton" : "algorithmButton"}
-        onClick={() => updateAlgorithm("insertionSort")}
-      >
-        Insertion Sort
-      </div>
-      <div className="separator"></div>
-      {algorithm && (
-        <div
-          id="sort"
-          style={{ color: color, cursor: cursor }}
-          onClick={!isRunning ? () => sort(algorithm, array, speed) : null}
-        >
-          Sort!
-        </div>
-      )}
     </div>
   );
 };

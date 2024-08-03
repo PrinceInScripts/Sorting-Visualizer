@@ -67,14 +67,7 @@ const Body = () => {
     : 8;
   const fontSize = `${numFont}px`;
 
-  // Log current states for debugging
-  console.log('currentSwappers', currentSwappers);
-  console.log('currentBubble', currentBubble);
-  console.log('currentQuick', currentQuick);
-  console.log('currentHeap', currentHeap);
-  console.log('currentSorted', currentSorted);
-  console.log('currentMergeX', currentMergeX);
-  console.log('pivot', pivot);
+ 
 
   return (
     <div id="bodyContainer">
@@ -85,7 +78,9 @@ const Body = () => {
             : currentBubble.includes(index) ||
               currentQuick.includes(index) ||
               currentHeap.includes(index) ||
-              currentMergeX.includes(index)
+              currentMergeX.includes(index) ||
+              currentSelection.includes(index) ||
+              currentInsertion.includes(index) 
             ? 'rgba(78, 216, 96, 0.8)'
             : pivot === index
             ? 'rgba(237, 234, 59, 0.8)'
